@@ -35,31 +35,26 @@
 })();
 
 function validation() {
-	var valueName = document.getElementById('name').value,
-		valueTel = document.getElementById('tel').value,
-		valueMail = document.getElementById('mail').value,
+	var doc = document,
+		valueName = doc.getElementById('name').value,
+		valueTel = doc.getElementById('tel').value,
+		valueMail = doc.getElementById('mail').value;
 //RegExp для имени
-		pcreName = /[^A-zА-яЁё]/.test(valueName),
+	if (/^[a-zа-яё]{2,}$/i.test(valueName) == true) {
 //для телефона
-		pcreTel = /\+\d{1,3}\(\d{3}\)\d{3}-\d{4}/.test(valueTel),
+		if (/\+?\d{1,3}\(?\s?\d{3}\s?\)?\d{3}-?\s?\d{4}/.test(valueTel) == true) {
 //для E-mail
-		pcreMail = /\w\.?-?\w\@\w\.\w/.test(valueMail);
-
-	if (pcreName === false) {
-		if (pcreTel === true) {
-			if (pcreMail === true) {
+			if (/(^\w+(|(\.|\-)\w+))(?=@[a-z]{2,}\.[a-z]{2,4}\b)/i.test(valueMail) == true) {
 				alert('отправлено');
 			} 
 			else 
-				mail.className = 'err';
-				document.getElementById('mail').value = 'ошибка!';
+				doc.getElementById('mail').className = 'err';
 		} 
 		else 
-			tel.className = 'err';
-			document.getElementById('tel').value = 'ошибка!';
+			doc.getElementById('tel').className = 'err';
 	} 
 	else 
-		document.getElementById('name').className = 'err';
-		document.getElementById('name').value = 'ошибка!';
+		doc.getElementById('name').className = 'err';
+		
 }
 
